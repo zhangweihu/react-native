@@ -7,7 +7,7 @@ import {AppRegistry} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
  import HomeScreen from './screen/home/HomeScreen';
-// import DrawerScreen from './screens/drawer/DrawerScreen';
+ import cameraScreen from './screen/camera/cameraScreen';
 // import NotificationScreen from './screens/notification/NotificationScreen';
 // import QRScannerScreen from "./screens/scanner/QRScannerScreen";
 
@@ -16,6 +16,7 @@ const App = StackNavigator({
         // Drawer: {screen: DrawerScreen},
         // Notification: {screen: NotificationScreen},
         // Scanner:{screen:QRScannerScreen}
+        camera:{screen:cameraScreen}
     }, {
         headerMode: 'none',
     }

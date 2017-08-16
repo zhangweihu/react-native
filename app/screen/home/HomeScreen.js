@@ -1,40 +1,33 @@
 import React, {Component} from "react";
-import {Text} from "react-native";
-import {Container, Content,Header,Title,Footer, FooterTab, Button, Left, Right, Body, Icon,View,DeckSwiper,Card,CardItem,Image,Thumbnail} from "native-base";
-//import {TitleBar} from "../../components/";
+import {Text,Navigator} from "react-native";
+import {Container, Content,Header,Title,Footer,FooterTab, Button, Left, Right, Body, Icon,View,DeckSwiper,Card,CardItem,Image,Thumbnail} from "native-base";
+import {TitleBar,FootTab} from "../../components/";
+
 export default class HomeScreen extends Component{
     render(){
         return(
              <Container>
-                    <Header>
-                            <Left>
-                                <Button transparent>
-                                <Icon name='menu' />
-                                </Button>
-                            </Left>
-                            <Body>
-                                <Title >Header</Title>
-                            </Body>
-                            <Right />
-                    </Header>
+                   <TitleBar
+                     title ={'Home'}
+                     Icon ={'menu'}
+                   />
                     <Content>
-                       <Text> hello</Text>
+                          <Card>
+                               <CardItem>
+                                     <Icon active name="logo-googleplus" />
+                                     <Text>Google Plus</Text>
+                                     <Right>
+                                        <Icon name="arrow-forward" />
+                                     </Right>
+                               </CardItem>
+                          </Card>
+                           <Button  onPress={()=>this.props.navigation.navigate('camera')}>
+                                <Text>点击去拍照 </Text>
+                           </Button>
+                         
                     </Content>
                     <Footer>
-                        <FooterTab>
-                            <Button active>
-                              <Icon  active name="apps" />
-                            </Button>
-                            <Button>
-                               <Icon name="camera" />
-                            </Button>
-                            <Button>
-                               <Icon  name="navigate" />
-                            </Button>
-                            <Button>
-                               <Icon name="person" />
-                            </Button>
-                        </FooterTab>
+                        <FootTab/>
                    </Footer>
               </Container>
         )

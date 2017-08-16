@@ -3,4 +3,5 @@
  * 所有组件必须通过这个类导出一遍才能在其他类中调用
  */
 import TitleBar from "./titleBar"
-export{TitleBar}
+import FootTab from "./footTab"
+export{TitleBar,FootTab}
