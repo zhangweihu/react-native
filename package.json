@@ -7,10 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "ac-qrcode": "^1.0.1",
     "native-base": "^2.3.1",
+    "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.1",
     "react-native-camera": "^0.10.0",
+    "react-native-splash-screen": "^2.1.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-form": "^7.0.3"

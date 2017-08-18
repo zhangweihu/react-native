@@ -1,16 +1,28 @@
 import React, {Component} from "react";
 import {Text,Navigator} from "react-native";
-import {Container, Content,Header,Title,Footer,FooterTab, Button, Left, Right, Body, Icon,View,DeckSwiper,Card,CardItem,Image,Thumbnail} from "native-base";
+import {Container, Content,Header,Title,Footer,Button, Left, Right, Body, Icon,View,Card,Image,CardItem,Drawer} from "native-base";
 import {TitleBar,FootTab} from "../../components/";
-
+import SplashScreen from 'react-native-splash-screen'
+import DrawerScreen from '../drawer/drawerScreen'
 export default class HomeScreen extends Component{
+     componentDidMount() {
+            SplashScreen.hide()
+      }
     render(){
-        return(
+      return(
+          <Drawer ref={(ref) => {this._drawer = ref}} 
+            content={<DrawerScreen />} 
+            >
+          
              <Container>
-                   <TitleBar
-                     title ={'Home'}
-                     Icon ={'menu'}
-                   />
+                <TitleBar
+                   Icon={'menu'}
+                   title={'Home'}
+                   leftIconPress={()=>{
+                         this._openDrawer()
+                   }}
+                />
+                        
                     <Content>
                           <Card>
                                <CardItem>
@@ -21,15 +33,27 @@ export default class HomeScreen extends Component{
                                      </Right>
                                </CardItem>
                           </Card>
-                           <Button  onPress={()=>this.props.navigation.navigate('camera')}>
-                                <Text>点击去拍照 </Text>
+                           <Button  block  success onPress={()=>this.props.navigation.navigate('camera')}>
+                                <Text>take picture </Text>
                            </Button>
-                         
+                           <Button  block  warning onPress={()=>this.props.navigation.navigate('toast')}>
+                                <Text>show toast </Text>
+                           </Button>
+                           <Button  block  danger onPress={()=>this.props.navigation.navigate('Scanner')}>
+                                <Text>show Scan </Text>
+                           </Button>
                     </Content>
                     <Footer>
-                        <FootTab/>
-                   </Footer>
+                         <Text>
+                               footer
+                         </Text>
+                    </Footer>
               </Container>
-        )
+              </Drawer>
+      )
+     
     }
+    _openDrawer() {
+      this._drawer._root.open();
+   }
 }

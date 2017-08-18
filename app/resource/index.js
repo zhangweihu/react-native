@@ -6,5 +6,5 @@
  */
 
 import Images from './Images'
-
-export {Images}
+import Colors from './Color'
+export {Images,Colors}
