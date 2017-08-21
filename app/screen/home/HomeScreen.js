@@ -1,15 +1,18 @@
 import React, {Component} from "react";
-import {Text,Navigator,NetInfo,StyleSheet} from "react-native";
+import {Text,Navigator,NetInfo,StyleSheet,TouchableOpacity,ActivityIndicator} from "react-native";
 import {Container, Content,Header,Title,Footer,Button, Left, Right, Body, Icon,View,Card,Image,CardItem,Drawer} from "native-base";
 import {TitleBar,FootTab} from "../../components/";
 import SplashScreen from 'react-native-splash-screen'
 import DrawerScreen from '../drawer/drawerScreen'
+import {NetUitl} from './../../uitl/'
 export default class HomeScreen extends Component{
       constructor(props){
              super(props)
              this.state={
                   isConnected:null,
-                  connectionInfo:null 
+                  connectionInfo:null ,
+                  // isLoading: false,
+                  // result:null
              }
       }
      componentDidMount() { 
@@ -28,11 +31,12 @@ export default class HomeScreen extends Component{
             SplashScreen.hide()
       }
     render(){
+     
       return(
           <Drawer ref={(ref) => {this._drawer = ref}} 
             content={<DrawerScreen />} 
             >
-          
+             
              <Container>
                 <TitleBar
                    Icon={'menu'}
@@ -43,6 +47,7 @@ export default class HomeScreen extends Component{
                 />
                         
                     <Content>
+                         
                           <Card>
                                <CardItem>
                                      <Icon active name="logo-googleplus" />
@@ -52,15 +57,18 @@ export default class HomeScreen extends Component{
                                      </Right>
                                </CardItem>
                           </Card>
-                           <Button  block  success onPress={()=>this.props.navigation.navigate('camera')}>
+                           <TouchableOpacity  block  success onPress={()=>this.props.navigation.navigate('camera')}>
                                 <Text>take picture </Text>
-                           </Button>
-                           <Button  block  warning onPress={()=>this.props.navigation.navigate('toast')}>
+                           </TouchableOpacity>
+                           <TouchableOpacity  block  warning onPress={()=>this.props.navigation.navigate('toast')}>
                                 <Text>show toast </Text>
-                           </Button>
-                           <Button  block  danger onPress={()=>this.props.navigation.navigate('Scanner')}>
+                           </TouchableOpacity>
+                           <TouchableOpacity  block  danger onPress={()=>this.props.navigation.navigate('Scanner')}>
                                 <Text>show Scan </Text>
-                           </Button>
+                           </TouchableOpacity>
+                           <TouchableOpacity  block light onPress={()=>this._fetchMsg()}>
+                                <Text>show message </Text>
+                           </TouchableOpacity>
                            <Text style={styles.welcome}>
                                     当前的网络状态：
                                     {this.state.isConnected ? '网络在线': '离线'}
@@ -85,6 +93,20 @@ export default class HomeScreen extends Component{
     }
     _openDrawer() {
       this._drawer._root.open();
+   }
+   _fetchMsg(){
+      //    this.setState({
+      //           isLoading:true
+      //    })
+          NetUitl.get('http://facebook.github.io/react-native/movies.json',(res)=>{
+                console.log(res)
+               // console.log(this.state.isLoading)
+            //     if(res!=null){
+            //             this.setState({
+            //                   isLoading:false
+            //       })
+            //     }
+          })
    }
 }
 //样式定义
